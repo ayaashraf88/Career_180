@@ -35,7 +35,6 @@ class AuthController extends Controller
 
             $loginData = LoginData::fromRequest($request);
             $user = $this->loginUser->execute($loginData);
-
             return redirect()->intended('/');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->errors())->withInput();
@@ -45,7 +44,7 @@ class AuthController extends Controller
     {
         try {
             $this->logoutUser->handle($request);
-            return redirect('/login');
+            return redirect('/');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors(['error' => $e->errors()])->withInput();
         }

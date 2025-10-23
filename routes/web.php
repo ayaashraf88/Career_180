@@ -13,7 +13,7 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register');
   Route::get('/', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('/');
     Route::get('/course/{slug}', Index::class)->name('courses.index');
 
 

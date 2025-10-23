@@ -11,7 +11,7 @@
                 </button>
             </div>
             <div class="col-9 col-lg-2 text-center text-lg-start mb-3 mb-lg-0">
-                <a href="{{route('dashboard')}}" class="text-decoration-none text-reset">
+                <a href="{{route('/')}}" class="text-decoration-none text-reset">
                     <h1 class="h3 m-0">Career 180</h1>
                 </a>
 

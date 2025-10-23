@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Database\Factories\AdminFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ModuleSeeder::class,
             LessonSeeder::class,
             EnrollmentSeeder::class,
+            AdminSeeder::class,
         ]);
     }
 }

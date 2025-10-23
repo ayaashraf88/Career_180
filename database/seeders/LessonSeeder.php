@@ -26,14 +26,12 @@ class LessonSeeder extends Seeder
                     'title' => 'Welcome to the Course',
                     'content' => 'Introduction and course overview.',
                     'video_url' => '01K7W0C8X6549C5EQJJ920JRSJ.mp4',
-                    'price' => 0,
                     'duration' => 10,
                 ],
                 [
                     'title' => 'Setting Up Your Environment',
                     'content' => 'Learn how to set up your development environment.',
                     'video_url' => '01K7W0C8X6549C5EQJJ920JRSJ.mp4',
-                    'price' => 0,
                     'duration' => 25,
                 ],
             ];
