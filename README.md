@@ -33,13 +33,17 @@ Prerequisites:
     - ``` php artisan serve ```
 * Run the test suite with:
      - ``` php artisan test ```
+* Run the queue:
+     - ``` php artisan queue:work ```
 * Login Credintials for admin :
      - email : ```admin@Career180.com```
-     -password : ```admin123```
+     - password : ```admin123```
+     - link : ```/admin```   
 * Login Credintials for student :
      - email : ```student@Career180.com```
-     -password : ```123456```
-* You will find the screenshot of tests in /screenshot 
+     - password : ```123456```
+     - link : ```/```
+* You can find the screenshot of the tests in /screenshot
 ## "If I had more time"
 
 - Add dedicated seeders for demo data and CI seeding
