@@ -39,6 +39,7 @@ Prerequisites:
 * Login Credintials for student :
      - email : ```student@Career180.com```
      -password : ```123456```
+* You will find the screenshot of tests in /screenshot 
 ## "If I had more time"
 
 - Add dedicated seeders for demo data and CI seeding
