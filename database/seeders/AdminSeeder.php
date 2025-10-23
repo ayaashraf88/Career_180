@@ -19,6 +19,8 @@ class AdminSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@Career180.com',
             'password' => bcrypt('admin123'),
+            'verified' => true,
+            'verified_at' => now(),
         ]);
     }
 }

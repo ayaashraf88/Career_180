@@ -28,6 +28,7 @@ class ListModules extends ListRecords
                     ->label('Course')
                     ->badge()
                     ->color('primary')->searchable()->sortable(),
+                TextColumn::make('order'),
             ])->bulkActions([
                 DeleteBulkAction::make(),
             ]);

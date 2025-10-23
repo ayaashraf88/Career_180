@@ -24,6 +24,8 @@ class ModulesRelationManager extends RelationManager
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('order')->numeric()->required(),
+
             ]);
     }
 
@@ -41,6 +43,7 @@ class ModulesRelationManager extends RelationManager
                     ->label('Lessons')
                     ->counts('lessons')
                     ->sortable(),
+                TextColumn::make('order'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

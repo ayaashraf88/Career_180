@@ -4,7 +4,6 @@ namespace App\Filament\Resources\ModuleResource\RelationManagers;
 
 use App\Models\Lesson;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -13,6 +12,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\FileUpload;
+
 
 class LessonsRelationManager extends RelationManager
 {
@@ -25,9 +26,15 @@ class LessonsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('video_url')
-                    ->label('Add Video url instead of uploading it')
-                    ->maxLength(255),
+                Forms\Components\TextInput::make('order')
+                    ->numeric()
+                    ->required(),
+                     FileUpload::make('video_url')
+                    ->openable()
+                    ->disk('lessons')
+                    ->visibility('public') // Set visibility during upload
+                    ->uploadingMessage('Uploading image please wait...')
+                    ->imagePreviewHeight('250'),
                 Forms\Components\TextInput::make('content')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('duration')
@@ -46,8 +53,9 @@ class LessonsRelationManager extends RelationManager
             ->recordTitleAttribute('title')
             ->columns([
                 Tables\Columns\TextColumn::make('title')->searchable(),
-                Tables\Columns\TextColumn::make('video_url')->label('Video URL'),
+                // Tables\Columns\TextColumn::make('video_url')->label('Video URL'),
                 Tables\Columns\TextColumn::make('content')->searchable(),
+                Tables\Columns\TextColumn::make('order')->searchable(),
                 Tables\Columns\TextColumn::make('duration')->label('Duraion in minutes')->searchable(),
                 Tables\Columns\TextColumn::make('price')->money('egp', true),
                 IconColumn::make('visible')

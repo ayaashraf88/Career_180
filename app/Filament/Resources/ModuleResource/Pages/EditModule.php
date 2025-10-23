@@ -24,7 +24,7 @@ class EditModule extends EditRecord
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-            
+                TextInput::make('order')->numeric()->required(),
             ]);
     }
 }
