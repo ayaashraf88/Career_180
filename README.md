@@ -10,9 +10,9 @@ Prerequisites:
 - MySQL 
 
 ### Installation 🛠️
-* ``` git clone https://github.com/ayaashraf88/daftra.git ```
+* ``` git clone https://github.com/ayaashraf88/Career_180.git ```
 * Install dependencies:
-    - ``` cd daftra```
+    - ``` cd Career_180```
     -  ``` composer install  ```
 * Set up environment:
     
