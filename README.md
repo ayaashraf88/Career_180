@@ -26,7 +26,6 @@ Prerequisites:
     - DB_USERNAME=your_db_user
     - DB_PASSWORD=your_db_password
 * Run migrations and seeders:
-    - ``` php artisan migrate```
     - ``` php artisan migrate --seed ```
 ### Usage 🚀
 * Start the development server:

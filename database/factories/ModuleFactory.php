@@ -12,6 +12,7 @@ class ModuleFactory extends Factory
         return [
             'course_id' => Course::factory(),
             'name' => $this->faker->sentence(2),
+            'order' => $this->faker->randomIn(2, 10, 500),
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];

@@ -22,11 +22,11 @@ class ModuleSeeder extends Seeder
         $firstCourse = Course::first();
         if ($firstCourse) {
             $modules = [
-                ['name' => 'Introduction to the Course'],
-                ['name' => 'Basic Concepts'],
-                ['name' => 'Advanced Topics'],
-                ['name' => 'Practical Applications'],
-                ['name' => 'Final Project'],
+                ['name' => 'Introduction to the Course','order'=>1],
+                ['name' => 'Basic Concepts','order'=>5],
+                ['name' => 'Advanced Topics','order'=>3],
+                ['name' => 'Practical Applications','order'=>4],
+                ['name' => 'Final Project','order'=>4],
             ];
 
             foreach ($modules as $module) {

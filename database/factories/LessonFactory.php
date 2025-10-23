@@ -15,7 +15,8 @@ class LessonFactory extends Factory
             'content' => substr($this->faker->text(), 0, 25), // Limit to 25 chars
             'video_url' => '01K7W0C8X6549C5EQJJ920JRSJ.mp4',
             'duration' => $this->faker->numberBetween(5, 120),
-            'visible' => true,
+            'visible' => (bool) mt_rand(0, 1),
+            'order'=>$this->faker->randomIn(2, 10, 500),
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];

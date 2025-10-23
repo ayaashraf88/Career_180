@@ -105,10 +105,8 @@
             $activeLesson = $activeModule->lessons->where('id', $selectedLessonId)->first();
             @endphp
             <div class="d-flex justify-content-between align-items-center">
-                <h2 class="h3 mb-3 ms-2">{{ $activeLesson->title }}</h2>
 
-                @auth('student')
-                @if($isEnrolled)
+                @if($isEnrolled&&$activeLesson!==null)
                 @if($this->isLessonCompleted($activeLesson->id))
                 <button class="btn btn-success btn-sm" disabled>Completed</button>
                 @else
@@ -136,14 +134,18 @@
                 </div>
                 @endif
                 @endif
-                @endauth
+
             </div>
-            @if($activeLesson->visible==false && (auth()->guard('guest')->check()||!$isEnrolled))
+            @if($activeLesson!=null&&$activeLesson->visible==false && (auth()->guard('guest')->check()||!$isEnrolled))
+            <h2 class="h3 mb-3 ms-2">{{ $activeLesson->title }}</h2>
+
             <div class="alert alert-info mt-4">
                 <h4 class="alert-heading">Lesson Locked</h4>
                 <p>This lesson is locked. Please enroll in the course to access this content.</p>
             </div>
             @elseif ($activeLesson)
+            <h2 class="h3 mb-3 ms-2">{{ $activeLesson->title }}</h2>
+
             <div class="mt-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="d-flex gap-2 align-items-center">

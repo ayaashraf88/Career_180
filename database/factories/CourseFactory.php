@@ -16,7 +16,7 @@ class CourseFactory extends Factory
             'name' => $name,
             'description' => $this->faker->paragraph(3),
             'slug' => Str::slug($name),
-            'image' => '01K7VS95B34XANVNQDAQ318J36.png',
+            'image' => '01K7VS95B34XANVNQDAQ318J36.jpg',
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];

@@ -16,18 +16,18 @@ class CourseSeeder extends Seeder
             [
                 'name' => 'Web Development Fundamentals',
                 'description' => 'Learn the basics of web development including HTML, CSS, and JavaScript.',
-                'image' => '01K7VQ460X2DYFRKBR5NXAYN60.png',
+                'image' => '01K7VQ460X2DYFRKBR5NXAYN60.jpg',
                 
             ],
             [
                 'name' => 'Laravel Masterclass',
                 'description' => 'Master Laravel framework with advanced techniques and best practices.',
-                'image' => '01K7VQ460X2DYFRKBR5NXAYN60.png',
+                'image' => '01K7VQ460X2DYFRKBR5NXAYN60.jpg',
             ],
             [
                 'name' => 'Database Design',
                 'description' => 'Learn how to design and optimize databases for modern applications.',
-                'image' => '01K7VQ460X2DYFRKBR5NXAYN60.png',
+                'image' => '01K7VQ460X2DYFRKBR5NXAYN60.jpg',
             ],
         ];
 
