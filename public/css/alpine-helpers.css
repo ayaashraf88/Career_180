@@ -1,0 +1,17 @@
+[x-cloak] { display: none !important; }
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1020;
+}
+@media (min-width: 992px) {
+    .mobile-nav-overlay { display: none; }
+}
+
+/* Ensure header not covered by content when fixed */
+/* body { padding-top: 56px; } */
+
+@media (min-width: 992px) {
+    body { padding-top: 0; }
+}
