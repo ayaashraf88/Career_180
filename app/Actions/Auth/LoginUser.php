@@ -25,7 +25,11 @@ class LoginUser
                 'email' => __('auth.failed'),
             ]);
         }
-
+        if (!Auth::guard('student')->user()->verified) {
+            throw ValidationException::withMessages([
+                'email' => __('Verify Your Account'),
+            ]);
+        }
         request()->session()->regenerate();
         activity()
             ->causedBy(Auth::guard('student')->user())

@@ -12,30 +12,22 @@
             <!-- Quick Links -->
             <div class="col-md-4 mb-3 mb-md-0">
                 <h6 class="text-uppercase fw-semibold">Quick Links</h6>
-                @php
-                    $isAuthenticated = Auth::check() || Auth::guard('student')->check();
-                @endphp
-                @if($isAuthenticated)
+            
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-decoration-none text-muted">Dashboard</a></li>
-                    <li><a href="#" class="text-decoration-none text-muted">My Courses</a></li>
-                    <li><a href="#" class="text-decoration-none text-muted">Profile</a></li>
-                    <li><a href="#" class="text-decoration-none text-muted">Logout</a></li>
-                </ul>
-                @endif
-                @guest
-                <!-- Guest nav items -->
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    <li><a href="{{ route('/') }}" class="text-decoration-none text-muted">Dashboard</a></li>
+                    <li><a href="{{ route('student.courses') }}" class="text-decoration-none text-muted">My Courses</a></li>
+                    <li><a href="{{ route('student.profile') }}" class="text-decoration-none text-muted">Profile</a></li>
+                    <li class="nav-item mt-1">
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link text-muted p-0 m-0" style="display: inline;">
+                                 Logout
+                            </button>
+                        </form>
                     </li>
-                    @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
-                    </li>
-                    @endif
                 </ul>
-                @endguest
+               
+              
 
             </div>
 

@@ -60,6 +60,7 @@ class StudentResource extends Resource
             'create' => Pages\CreateStudent::route('/create'),
             'view-lessons' => Pages\ViewLessons::route('/{student}/view-lessons/{course}'),
             'edit' => Pages\EditStudent::route('/{record}/edit'),
+            // 'logs'=>Pages\ViewLogs::route('/{record}/logs'),
         ];
     }
 }

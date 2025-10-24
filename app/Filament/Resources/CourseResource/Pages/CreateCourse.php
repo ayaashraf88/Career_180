@@ -20,9 +20,11 @@ class CreateCourse extends CreateRecord
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('description')->required(),
-                 TextInput::make('slug')->required(),
-               FileUpload::make('image')
+                TextInput::make('slug')->required(),
+                FileUpload::make('image')
                     ->image()
+                    ->imageResizeTargetWidth(800) // Resizes to 800 pixels wide
+                    ->imageResizeTargetHeight(600)
                     ->openable()
                     ->disk('courses')
                     ->visibility('public') // Set visibility during upload

@@ -28,6 +28,8 @@ class EditCourse extends EditRecord
                 Forms\Components\TextInput::make('slug')->required(),
                 Forms\Components\FileUpload::make('image')
                     ->image()
+                    ->imageResizeTargetWidth(800)
+                    ->imageResizeTargetHeight(600)
                     ->openable()
                     ->previewable()
                     ->disk('courses')
