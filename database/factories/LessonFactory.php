@@ -16,7 +16,7 @@ class LessonFactory extends Factory
             'video_url' => '01K7W0C8X6549C5EQJJ920JRSJ.mp4',
             'duration' => $this->faker->numberBetween(5, 120),
             'visible' => (bool) mt_rand(0, 1),
-            'order'=>$this->faker->randomIn(2, 10, 500),
+            'order'=>$this->faker->numberBetween(1, 100),
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
