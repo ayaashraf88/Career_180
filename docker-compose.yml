@@ -1,0 +1,35 @@
+
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=my_sql
+      - DB_USER=root
+      - DB_PASSWORD=rootpassword
+      - DB_NAME=dockerDB
+      - DB_PORT=3306
+    depends_on:
+      - my_sql
+
+  my_sql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=dockerDB
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql_data:
+#docker compose exec app php artisan migrate --seed

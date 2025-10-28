@@ -210,7 +210,6 @@ class Index extends Component
                 'student_id' => $student_id,
             ])->first();
 
-            // Only send notification if this is the first time reaching 100%
             if (is_numeric($progress) && $progress >= 100 && 
                 (!$enrollment || $enrollment->completed_at === null)) {
                 $student = Student::find($studentId);

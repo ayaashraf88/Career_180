@@ -104,30 +104,29 @@
             @php
             $activeLesson = $activeModule->lessons->where('id', $selectedLessonId)->first();
             @endphp
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center"  x-data="{showConfirm:false}">
 
                 @if($isEnrolled&&$activeLesson!==null)
                 @if($this->isLessonCompleted($activeLesson->id))
                 <button class="btn btn-success btn-sm" disabled>Completed</button>
                 @else
-                <div x-data="{ showConfirm: false }" class="d-inline">
-                    <button @click.prevent="showConfirm = true" type="button" class="btn btn-warning btn-sm">Mark as Completed</button>
-
-                    <div x-show="showConfirm" x-cloak wire:ignore.self
-                        @keydown.escape.window="showConfirm = false"
-                        @click.self="showConfirm = false"
-                        x-transition.opacity
-
-                        style="z-index: 1050; position: fixed; inset: 0; align-items: center; justify-content: center; background: rgba(0,0,0,0.5);">
-                        <div class="bg-white rounded shadow p-4" style="min-width: 300px; max-width: 90%;">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h5 class="mb-0">Confirm Completion</h5>
-                                <button type="button" class="btn-close" @click="showConfirm = false"></button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning btn-sm"  data-bs-toggle="modal" data-bs-target="#exampleModal" @click="showModal=true">
+                 Mark as completed
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  x-show="showModal"> 
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <p>Are you sure you want to mark this lesson as completed?</p>
-                            <div class="d-flex justify-content-end gap-2">
-                                <button type="button" class="btn btn-secondary btn-sm" @click="showConfirm = false">Cancel</button>
-                                <button type="button" class="btn btn-primary btn-sm" @click.stop.prevent="showConfirm = false; $wire.call('markAsCompleted', {{ $activeLesson->id }}, true)">Yes, Complete</button>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" wire:click="markAsCompleted({{$activeLesson->id}},true)" data-bs-dismiss="modal" @click="showModal:false">Save changes</button>
                             </div>
                         </div>
                     </div>
