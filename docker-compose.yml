@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - .:/var/www/html
+      - app_data:/var/www/html
     environment:
       - NODE_ENV=development
       - DB_HOST=my_sql
@@ -32,4 +32,5 @@ services:
 
 volumes:
   mysql_data:
+  app_data:
 #docker compose exec app php artisan migrate --seed
