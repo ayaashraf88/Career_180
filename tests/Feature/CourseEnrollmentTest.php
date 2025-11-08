@@ -6,6 +6,7 @@ use App\Models\Enrollment;
 use App\Models\Student;
 use Illuminate\Support\Facades\Schema;
 use Livewire\Livewire;
+
 it('requires login to enroll', function () {
     $course = Course::factory()->create();
     auth()->guard('student')->logout();
@@ -36,7 +37,7 @@ it('does not allow enrolling on draft courses', function () {
 });
 
 it('enrollment is idempotent', function () {
-    $course = Course::factory()->create();
+$course = Course::factory()->create();
     $student = Student::factory()->create();
     $this->actingAs($student, 'student');
     Livewire::test(CoursesIndex::class, ['slug' => $course->slug])

@@ -22,7 +22,6 @@ class EducationStatsOverview extends BaseWidget
                 ->description('Registered learners')
                 ->descriptionIcon('heroicon-m-user-group')
                 ->color('primary')
-                // ->chart($this->getStudentGrowthChart())
                 ->url(route('filament.admin.resources.students.index')),
                  Stat::make('Total Courses', $totalCourses)
                 ->description('Available courses')

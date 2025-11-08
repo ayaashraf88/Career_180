@@ -9,7 +9,7 @@ use App\Models\Enrollment;
 use Livewire\Livewire;
 
 it('allows guests to access preview lessons but blocks locked lessons', function () {
-    $course = Course::factory()->create();
+   $course = Course::factory()->create();
     $module = Module::factory()->create(['course_id' => $course->id]);
     $previewLesson = Lesson::factory()->create(['module_id' => $module->id, 'visible' => true]);
     $lockedLesson = Lesson::factory()->locked()->create(['module_id' => $module->id]);
@@ -24,10 +24,11 @@ it('allows guests to access preview lessons but blocks locked lessons', function
         ->call('selectLesson', $lockedLesson->id);
 
     $component->assertSee('Lesson Locked');
+
 });
 
 it('allows enrolled students to access locked lessons', function () {
-    $course = Course::factory()->create();
+  $course = Course::factory()->create();
     $module = Module::factory()->create(['course_id' => $course->id]);
 
     $lockedLesson = Lesson::factory()->locked()->create(['module_id' => $module->id]);

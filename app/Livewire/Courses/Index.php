@@ -37,10 +37,10 @@ class Index extends Component
                 $q2->orderBy('order');
             }]);
         }])->firstOrFail();
-
         $this->course = $course;
         // $this->isEnrolled;
         $firstModule = $this->course->modules->first();
+
         $this->selectedModuleId = $firstModule?->id;
         $this->selectedLessonId = $firstModule?->lessons->first()?->id;
     }
@@ -157,23 +157,21 @@ class Index extends Component
 
     function enroll()
     {
-        if(Auth::guard('student')->id()){
-     $student = Student::find(Auth::guard('student')->id());
-        $request = [
-            'course_id' => $this->course->id,
-            'student_id' => $student->id,
-        ];
-        $data = CreateEnrollmentData::fromRequest((object) $request);
-        $action = new \App\Actions\Enrollment\CreateEnrollment($data->course_id, $data->student_id);
-        $completedLesson = $action->execute($data);
-        $this->isEnrolled = true;
-        $student->notify(new EnrolledNotification($this->course));
-        $this->dispatch('notify', type: 'success', message: 'Congratulations You Enrolled Successfully in this course');
-        }else{
-                    $this->dispatch('notify', type: 'warning', message: 'You have to log in first to enroll in');
-
+        if (Auth::guard('student')->id()) {
+            $student = Student::find(Auth::guard('student')->id());
+            $request = [
+                'course_id' => $this->course->id,
+                'student_id' => $student->id,
+            ];
+            $data = CreateEnrollmentData::fromRequest((object) $request);
+            $action = new \App\Actions\Enrollment\CreateEnrollment($data->course_id, $data->student_id);
+            $Enrolled = $action->execute($data);
+            $this->isEnrolled = true;
+            $student->notify(new EnrolledNotification($this->course));
+            $this->dispatch('notify', type: 'success', message: 'Congratulations You Enrolled Successfully in this course');
+        } else {
+            $this->dispatch('notify', type: 'warning', message: 'You have to log in first to enroll in');
         }
-   
     }
     public function markAsCompleted($lessonId, $is_completed)
     {
@@ -200,7 +198,7 @@ class Index extends Component
             $data = TrackProgressData::fromRequest((object) $trackData);
             $action = new \App\Actions\Lesson\TrackProgress($data->course_id, $data->student_id);
             $progress = $action->execute($data);
-            
+
             // Force refresh of progress bar
             $this->refreshProgress = !$this->refreshProgress;
             $this->dispatch('progressUpdated');
@@ -210,8 +208,10 @@ class Index extends Component
                 'student_id' => $student_id,
             ])->first();
 
-            if (is_numeric($progress) && $progress >= 100 && 
-                (!$enrollment || $enrollment->completed_at === null)) {
+            if (
+                is_numeric($progress) && $progress >= 100 &&
+                (!$enrollment || $enrollment->completed_at === null)
+            ) {
                 $student = Student::find($studentId);
                 if ($student) {
                     $student->notify(new CourseCompletedNotification($this->course));

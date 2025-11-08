@@ -63,7 +63,6 @@ class TrackProgress
                     [
                         'progress' => $progress,
                         'completed_at' => $completed_at,
-                        'last_progress_update' => now(),
                     ]
                 );
 

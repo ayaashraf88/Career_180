@@ -2,7 +2,6 @@
 @section('content')
 <div class="container">
     <h2 class="mb-4">My Enrolled Courses</h2>
-
     @if($enrolledCourses)
     <div class="row">
         @foreach($enrolledCourses as $course)

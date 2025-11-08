@@ -9,6 +9,7 @@ use App\DTOs\Auth\LoginData;
 use App\DTOs\Auth\RegiserData;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -35,7 +36,7 @@ class AuthController extends Controller
 
             $loginData = LoginData::fromRequest($request);
             $user = $this->loginUser->execute($loginData);
-            return redirect()->intended('/');
+            return redirect()->to('/');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->errors())->withInput();
         }

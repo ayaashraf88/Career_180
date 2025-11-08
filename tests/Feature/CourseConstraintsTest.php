@@ -21,7 +21,7 @@ class CourseConstraintsTest extends TestCase
 
     public function test_course_slugs_must_be_unique()
     {
-        // Create a course with a specific slug
+       // Create a course with a specific slug
         $course1 = Course::factory()->create([
             'name' => 'Python Programming',
             'slug' => 'python-programming'
@@ -36,7 +36,7 @@ class CourseConstraintsTest extends TestCase
         ]);
     }
 
-    public function test_concurrent_lesson_completion_maintains_consistency()
+     public function test_concurrent_lesson_completion_maintains_consistency()
     {
         // Create test data
         $course = Course::factory()->create();

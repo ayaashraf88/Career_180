@@ -17,7 +17,7 @@
             toastEl.setAttribute('role', 'alert');
             toastEl.setAttribute('aria-live', 'assertive');
             toastEl.setAttribute('aria-atomic', 'true');
-            toastEl.innerHTML = ` <div class="d-flex"> <div class="toast-body">${message}</div> </div>`;
+            toastEl.innerHTML = ` <div class="d-flex"> <div class="toast-body">${message}</div> <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button> </div>`;
             container.appendChild(toastEl);
 
             const toast = new bootstrap.Toast(toastEl, {

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Course;
+use App\Models\Module;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ModuleFactory extends Factory
@@ -16,5 +17,13 @@ class ModuleFactory extends Factory
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
+    }
+      public function configure()
+    {
+        static $order = 1;
+
+        return $this->afterMaking(function (Module $module) use (&$order) {
+            $module->order = $order++;
+        });
     }
 }
