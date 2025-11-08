@@ -1,0 +1,67 @@
+name: Laravel CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: dockerDB
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+
+      - name: Install PHP & Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, intl, pdo_mysql
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Create .env file
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_DATABASE=dockerDB" >> .env
+          echo "DB_USERNAME=root" >> .env
+          echo "DB_PASSWORD=rootpassword" >> .env
+
+      - name: Wait for MySQL
+        run: |
+          sudo apt-get install -y mysql-client
+          until mysql -h 127.0.0.1 -u root -prootpassword -e "show databases;" ; do
+            sleep 2
+          done
+
+      - name: Run migrations
+        run: php artisan migrate --force
+
+      - name: Run Pest Tests
+        run: vendor/bin/pest
