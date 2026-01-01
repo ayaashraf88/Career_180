@@ -15,7 +15,7 @@ class CoursesController extends Controller
             $enrollments = $student->courses()
                 ->whereHas('course')
                 ->with('course')
-                ->get();
+                ->paginate(3);
             $enrolledCourses = $enrollments->map(function ($enrollment) {
                 $course = $enrollment->course;
                 $course->progress = $enrollment->progress ?? 0;

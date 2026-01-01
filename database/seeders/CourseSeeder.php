@@ -29,6 +29,7 @@ class CourseSeeder extends Seeder
                 'description' => 'Learn how to design and optimize databases for modern applications.',
                 'image' => '01K7VQ460X2DYFRKBR5NXAYN60.png',
             ],
+            
         ];
 
         foreach ($courses as $course) {

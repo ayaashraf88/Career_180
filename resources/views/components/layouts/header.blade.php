@@ -1,6 +1,6 @@
-<div x-data="headerApp()">
+<div >
 
-    <header class="container-fluid bg-light shadow-sm py-3">
+    <header class="container-fluid bg-light shadow-sm py-3" x-data="headerApp()">
         <div class="row align-items-center">
             <div class="col-3  d-lg-none ">
                 <button
@@ -24,13 +24,21 @@
                 @endphp
 
                 <ul
+                    x-data
                     class="nav justify-content-lg-end flex-column flex-lg-row gap-3 text-center d-none d-lg-flex"
                     :class="{ 'd-flex': mobileMenuOpen, 'flex-column': mobileMenuOpen,'justify-content-center': mobileMenuOpen, 'd-none': !mobileMenuOpen }">
                     @if($isAuthenticated)
                     <li class="nav-item">
                         @livewire('navbar-course-search')
                     </li>
+                    <li class="nav-item">
+                        <i class="fas fa-home me-1"></i> <button @click="$store.theme ? $store.theme.toggle() : null">
+                            Switch Mode
+                        </button>
+                        <button @click="console.log($store)">Check Store</button>
+                        <span x-text="$store.theme.on ? 'DARK' : 'LIGHT'"></span>
 
+                    </li>
                     <li class="nav-item">
                         <a href="{{route('student.logs')}}" class="nav-link text-reset">
                             <i class="fas fa-home me-1"></i> logs

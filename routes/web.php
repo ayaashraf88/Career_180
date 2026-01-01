@@ -6,6 +6,7 @@ use App\Http\Controllers\students\LogsController;
 use App\Http\Controllers\students\StudentsController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Courses\Index;
+use App\Livewire\Tweet;
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -15,7 +16,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
         return view('dashboard');
     })->name('dashboard');
     Route::get('/course/{slug}', Index::class)->name('courses.index');
-
+    Route::get('/tweet', Tweet::class)->name('tweet');
 
 Route::middleware(['auth:student'])->group(function () {
   

@@ -2,6 +2,7 @@
     <div class="mb-4">
         <h3 class="h4 mb-4">Recommended Courses</h3>
     </div>
+
     <div wire:ignore class="swiper mySwiper px-2">
         <div class="swiper-wrapper py-4">
             @foreach($randomCourses as $course)

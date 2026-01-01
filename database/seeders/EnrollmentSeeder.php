@@ -16,7 +16,7 @@ class EnrollmentSeeder extends Seeder
 
         // Each student enrolls in 1-4 random courses
         foreach ($students as $student) {
-            $randomCourses = $courses->random(rand(1, 4));
+            $randomCourses = $courses->random(rand(1, 2));
             
             foreach ($randomCourses as $course) {
                 Enrollment::factory()->create([

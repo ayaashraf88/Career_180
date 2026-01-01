@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Toasts Livewire component is auto-discovered from App\Http\Livewire\Toasts
+        // Toasts Livewire component is auto-discovered from App\Livewire\Toasts
 
     }
 }

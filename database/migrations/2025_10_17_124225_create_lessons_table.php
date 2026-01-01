@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('video_url')->nullable();
             $table->string('content')->nullable();
-            $table->boolean('   ')->default(true);
+            $table->boolean('visible')->default(true);
             $table->timestamps();
         });
     }

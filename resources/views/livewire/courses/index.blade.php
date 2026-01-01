@@ -8,7 +8,6 @@
                     alt="{{ $course->name }}"
                     loading="lazy">
             </div>
-
             <h1 class="h2 my-4">{{ $course->name }}</h1>
             <p class="lead">{{ $course->description }}</p>
         </div>

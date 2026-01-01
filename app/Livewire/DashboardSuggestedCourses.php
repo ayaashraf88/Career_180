@@ -17,19 +17,18 @@ class DashboardSuggestedCourses extends Component
         try {
             if (!auth()->guard('student')->check()) {
                 $availableCourseIds = Course::pluck('id')->toArray();
-                    $randomCourses = Course::whereIn('id', $availableCourseIds)
-                ->inRandomOrder()
-                ->limit(5)
-                ->get();
-            }else{
-            $student = auth()->guard('student')->user();
-            $availableCourseIds = $student->Courses()->pluck('course_id')->toArray();
+                $randomCourses = Course::whereIn('id', $availableCourseIds)
+                    ->inRandomOrder()
+                    ->limit(5)
+                    ->get();
+            } else {
+                $student = auth()->guard('student')->user();
+                $availableCourseIds = $student->Courses()->pluck('course_id')->toArray();
                 $randomCourses = Course::whereNotIn('id', $availableCourseIds)
-                ->inRandomOrder()
-                ->limit(5)
-                ->get();
+                    ->inRandomOrder()
+                    ->limit(5)
+                    ->get();
             }
-        
             return $randomCourses;
         } catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors(['error' => $e->errors()]);
