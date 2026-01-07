@@ -35,6 +35,7 @@
                                 @endphp
                                 <span class="text-muted small">{{ round($progress) }}%</span>
                             </div>
+                            <p>check</p>
                             <div class="progress" style="height: 8px; background-color: #e9ecef;">
 
                                 <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
